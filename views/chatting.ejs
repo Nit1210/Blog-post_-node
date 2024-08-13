@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header.ejs')%>
+</head>
+<body class="active">
+
+    <%- include('./partials/nav.ejs')%>
+    <div class="container my-5">
+        <h2>Actor</h2>
+        <ul>
+           
+        </ul>
+    </div>
+
+    <form >
+        <label for="Actor">Add a new actor</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="Actor" required>
+            <div class="input-group-append">
+            <input type="submit" value="add" class="btn btn-outline-secondary">
+            </div> 
+        </div>
+    </form>
+    <form class="active">
+        <div class="container active">
+            <label for="email"> email</label>
+            <input type="email" id="email"  >
+            <label for="password"> Password</label>
+            <input type="password" id="password" name="password">
+            <label for="Username"> Username</label>
+            <input type="text" id="Username">
+            <input type="submit"  value="SignIn"  class="btn btn-outline-primary SignIn"> 
+        </div>
+        
+        <li class="error_message"></li>
+    </form>
+    
+    <script type="module" src="bundle.js"></script>
+    <!-- <script type="module" src="connection.js"></script>
+ <script type="module" src="sandbox.js"></script> -->
+</body>
+<%- include('./partials/footer.ejs')%>
+</html>

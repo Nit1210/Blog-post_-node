@@ -1,0 +1,41 @@
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="details content container">
+      <h2><%= blog.title %></h2>
+      <h4><%= blog.snippet %></h4>
+      
+      <button id="show-update-form" class="update-btn">Update Snippet</button>
+      <form id="update-snippet-form" action="/blogs/<%= blog._id %>" method="post" style="display: none;">
+        <input type="text" id="snippet" name="snippet" value="<%= blog.snippet %>" required>
+        <button type="submit">Update Snippet</button>
+      </form>
+      <a class="delete" data-doc="<%= blog._id %>">Delete</a>
+    </div>
+    <div class="content">
+        <p><%= blog.body %></p>
+      </div>
+    <%- include("./partials/footer.ejs") %>
+  </body>
+  <script>
+    document.getElementById('show-update-form').addEventListener('click', function() {
+        document.getElementById('update-snippet-form').style.display = 'block';
+        this.style.display = 'none';
+      });
+    const dlt = document.querySelector('a.delete');
+    dlt.addEventListener('click', async (e) => {
+      const element = `/${dlt.dataset.doc}`;
+      console.log(element);
+      await fetch(element, {
+        method: 'DELETE'
+      })
+        .then(result =>
+          result.json()
+        ).then(data =>
+          window.location.href = data.redirect
+        )
+        .catch(err => { console.log(err) })
+    });
+  </script>
+</html>
